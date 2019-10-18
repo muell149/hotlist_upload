@@ -1,3 +1,15 @@
-KRFU feature engineering. See https://inside.gogoair.com/display/Qty/KRFU+Failure+signatures for more details.
+Scripts to copy files from onedrive to aws s3 running from EMR cluster.
 
-This repo will contain the efforts to produce features to discriminate different krfu failrues.
+See: https://inside.gogoair.com/pages/viewpage.action?pageId=146543164 and https://inside.gogoair.com/display/Qty/Pyspark-Jupyter+EMR+Resource+Usage+Notes#Pyspark-JupyterEMRResourceUsageNotes-HowtosetupautomatedcopyfromonedrivetoS3
+
+for more info. populates the ds.reliability_hotlist table.
+
+Relies on:
+
+- https://github.com/rclone/rclone
+- https://github.com/wireservice/csvkit
+
+
+Usage:
+
+./onedrive_to_s3.sh
