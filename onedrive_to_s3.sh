@@ -3,37 +3,38 @@
 ### usage: ./onedrive_to_s3.sh
 
 echo 'copying from onedrive...'
-rclone copy onedrive:Charlie_LRU_NFF_Failure_Prediction.xlsx .
+/usr/bin/rclone copy onedrive:Charlie_LRU_NFF_Failure_Prediction.xlsx /mnt/cmueller/
+
 
 echo ''
 echo 'converting xlsx to csv...'
-in2csv Charlie_LRU_NFF_Failure_Prediction.xlsx > test.csv
+/usr/local/bin/in2csv /mnt/cmueller/Charlie_LRU_NFF_Failure_Prediction.xlsx > /mnt/cmueller/test.csv
 
 echo ''
 echo 'removing header....'
-csvformat -K 1 test.csv > data.csv
+/usr/local/bin/csvformat -K 1 /mnt/cmueller/test.csv > /mnt/cmueller/data.csv
 
 echo ''
 echo 'removing any whitespace...'
-sed -i 's/ //g' data.csv
+sed -i 's/ //g' /mnt/cmueller/data.csv
 
 echo ''
 echo 'copying to s3 bucket...'
-aws s3 cp --sse AES256 data.csv s3://gogo-udp-ds-prod/data/ds/reliability_hotlist/data.csv
+aws s3 cp --sse AES256 /mnt/cmueller/data.csv s3://gogo-udp-ds-prod/data/ds/reliability_hotlist/data.csv
 
 echo ''
 echo 'contents uploaded to s3:'
-cat data.csv
+cat /mnt/cmueller/data.csv
 
 echo ''
 echo 'header:'
-head -1 test.csv
+head -1 /mnt/cmueller/test.csv
 
 echo ''
 echo 'cleaning up (deleting) copied files...'
-rm Charlie_LRU_NFF_Failure_Prediction.xlsx
-rm test.csv
-rm data.csv
+rm /mnt/cmueller/Charlie_LRU_NFF_Failure_Prediction.xlsx
+rm /mnt/cmueller/test.csv
+rm /mnt/cmueller/data.csv
 
 echo ''
 echo 'done.'
