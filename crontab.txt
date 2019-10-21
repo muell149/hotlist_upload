@@ -1,0 +1,5 @@
+###########
+##  copy/paste line below intro crontab (uploads to s3 every 10 hours at the 55th minute)
+###########
+
+55 */10 * * * . /home/hadoop/.profile; /home/hadoop/cmueller/hotlist_upload/onedrive_to_s3.sh > /mnt/cmueller/rclone_`date +\%Y-\%m-\%d-\%H\-\%M-\%S`.log 2>&1
