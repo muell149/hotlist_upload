@@ -1,6 +1,16 @@
 #!/bin/bash
 
+#######################################
 ### usage: ./onedrive_to_s3.sh
+######################################
+
+# exit when any command fails
+set -e
+
+# keep track of the last executed command
+trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
+# echo an error message before exiting
+trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 
 echo 'copying from onedrive...'
 /usr/bin/rclone copy onedrive:Charlie_LRU_NFF_Failure_Prediction.xlsx /mnt/cmueller/
